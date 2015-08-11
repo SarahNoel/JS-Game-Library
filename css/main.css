@@ -1,7 +1,22 @@
+/*.container{
+  margin: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+}
+
+*/
 .game-library {
   margin: 10px;
   padding: 10px;
   border: 1px solid black;
 }
 
+body{
+  font-family: 'Dosis', sans-serif;
+ /* background-image: url("http://fc08.deviantart.net/fs70/i/2010/365/3/a/8_bit_ocean_by_pterodactylenol-d363pgc.jpg");
+  background-size: cover;*/
+}
 
+h1{
+  padding-left: 25px;
+}

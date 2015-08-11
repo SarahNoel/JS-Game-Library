@@ -31,11 +31,16 @@ var Game = function (title, genre) {
   this.genre = genre;
 };
 
+Game.prototype.deleteGame = function(libraryDelete){
+  index = libraryDelete.library.indexOf(this);
+  libraryDelete.library.splice(index, 1);
+};
+
 //adding library form to html
-var libraryForm = '<div id="lib-div"><form name = "allLibraries">Game Library: <br><input type="text" name="libtitle" id="libtitle"><br><br><input type="submit" value="Submit" class="submit" id= "new-library-submit"><br><br><select id ="lib"><option value ="">Create a library</option></select></form><br></div><div id="answers"><ul id="games"> </ul></div>';
+var libraryForm = '<div class = "container"><div id="lib-div"><form name = "allLibraries">Game Library: <br><input type="text" name="libtitle" id="libtitle"><br><br><input type="submit" value="Submit" class="submit" id= "new-library-submit"><br><br><select id ="lib"><option value ="">Create a library</option></select></form><br></div><div id="answers"><ul id="games"> </ul></div></div>';
 
 //adding game form to html
-var gameForm = '<div id="game-div"><form>Game Title: <br><input type="text" name="game-title" id="title"><br>Game Genre: <br><input type="text" name="game-genre" id="genre"><br><br><input type="submit" value="Submit" class="submit" id= "new-game"></form><br><br><button id="show">Show all Libraries</button><br><br><button id="reset">Reset</button></div>';
+var gameForm = '<div class = "container"><div id="game-div"><form>Game Title: <br><input type="text" name="game-title" id="title"><br>Game Genre: <br><input type="text" name="game-genre" id="genre"><br><br><input type="submit" value="Submit" class="submit" id= "new-game"><br><br><button id="show">Show all Libraries</button></form><br><form id="delete-form"><br>Library to Delete From:<br><input type="text" name="library-delete" id="lib-delete"><br><br>Game to Delete:<br><input type="text" name="game-delete" id="game-delete"><br><br><input type="submit" value="Delete Game" class="submit" id= "delete-btn"></form><br><button id="reset">Reset</button></div></div></div>';
 
 //makes new library a dropdown option
 function newLibrary (array){
@@ -77,8 +82,8 @@ $(document).on('ready', function() {
     var useLibrary;
     //connect name with library object in array
     for (var i = 0; i < libraries.length; i++) {
-     if(libName === libraries[i].name){
-      useLibrary = libraries[i];
+      if(libName === libraries[i].name){
+        useLibrary = libraries[i];
      }
     }
     //creates new game, pushes to library, appends to DOM
@@ -88,7 +93,8 @@ $(document).on('ready', function() {
     });
 
   //shows all libraries
-  $('#show').on("click", function(){
+  $('#show').on("click", function(e){
+    e.preventDefault();
     $('#answers').html('');
     for (var i = 0; i < libraries.length; i++) {
     libraries[i].render();
@@ -103,5 +109,26 @@ $(document).on('ready', function() {
     libraries = [];
   });
 
+  // delete game
+   $('#delete-btn').on("click", function(e){
+    e.preventDefault();
+    var useLibrary;
+    var game;
+    var libName = $("#lib-delete").val();
+      for (var i = 0; i < libraries.length; i++) {
+        if(libName === libraries[i].name){
+          useLibrary = libraries[i];
+          }
+        }
+    var gameTitle = $('#game-delete').val();
+      for (var j = 0; j < useLibrary.library.length; j++) {
+        if(gameTitle === useLibrary.library[j].title){
+            game = useLibrary.library[j];
+          }
+        }
+    game.deleteGame(useLibrary);
+    $('#answers').html('');
+    useLibrary.render();
+  });
 
 }); //end of document
