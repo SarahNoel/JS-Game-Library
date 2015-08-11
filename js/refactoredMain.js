@@ -18,8 +18,7 @@ Library.prototype.render = function(library){
   $('#answers').append("<h3 class = 'answers'>" + this.name +"</h3>");
   for (var i = 0; i < this.library.length; i++) {
     $('#answers')
-      .append('<li>Title: ' + this.library[i].title + '</li>')
-      .append('<li>Genre: ' + this.library[i].genre + '</li>')
+      .append('<div><li><span id="sib">Title: ' + this.library[i].title + "        "  + '</span><button class="delete-click">x</button></li><br><li>Genre: ' + this.library[i].genre + '</li></div>')
       .append('<br>');
   }
   $('input').not('.submit').val('');
@@ -37,15 +36,16 @@ Game.prototype.deleteGame = function(libraryDelete){
 };
 
 //adding library form to html
-var libraryForm = '<div class = "container"><div id="lib-div"><form name = "allLibraries">Game Library: <br><input type="text" name="libtitle" id="libtitle"><br><br><input type="submit" value="Submit" class="submit" id= "new-library-submit"><br><br><select id ="lib"><option value ="">Create a library</option></select></form><br></div><div id="answers"><ul id="games"> </ul></div></div>';
+var libraryForm = '<div class = "container"><div id="lib-div"><form name = "allLibraries">Game Library: <br><input type="text" name="libtitle" id="libtitle"><br><br><input type="submit" value="Create Library" class="submit" id= "new-library-submit"><br><br><select id ="lib"><option value ="">Create a library</option></select></form><br></div><div id="answers"><ul id="games"> </ul></div></div>';
 
 //adding game form to html
-var gameForm = '<div class = "container"><div id="game-div"><form>Game Title: <br><input type="text" name="game-title" id="title"><br>Game Genre: <br><input type="text" name="game-genre" id="genre"><br><br><input type="submit" value="Submit" class="submit" id= "new-game"><br><br><button id="show">Show all Libraries</button></form><br><form id="delete-form"><br>Library to Delete From:<br><input type="text" name="library-delete" id="lib-delete"><br><br>Game to Delete:<br><input type="text" name="game-delete" id="game-delete"><br><br><input type="submit" value="Delete Game" class="submit" id= "delete-btn"></form><br><button id="reset">Reset</button></div></div></div>';
+var gameForm = '<div class = "container"><div id="game-div"><form>Game Title: <br><input type="text" name="game-title" id="title"><br>Game Genre: <br><input type="text" name="game-genre" id="genre"><br><br><input type="submit" value="Add Game" class="submit" id= "new-game"></form><br><button id ="reset">Reset</button></div></div></div>';
 
 //makes new library a dropdown option
-function newLibrary (array){
+function newDropdownOption (array){
+  $('#lib').html("");
   var option = '';
-  for (var i=0;i<array.length;i++){
+  for (var i = 0; i < array.length; i++){
      option += '<option value="'+ array[i].name + '">' + array[i].name + '</option>';
   }
   $('#lib').append(option);
@@ -66,11 +66,10 @@ $(document).on('ready', function() {
   //create new libary
   $('#new-library-submit').on("click", function(e){
     e.preventDefault();
-    $('#lib').html("");
     var libr = $('#libtitle').val();
     libr = new Library(libr);
     libraries.push(libr);
-    newLibrary(libraries);
+    newDropdownOption(libraries);
     });
 
   //create new game
@@ -89,15 +88,8 @@ $(document).on('ready', function() {
     //creates new game, pushes to library, appends to DOM
     var newGame = new Game($("#title").val(), $('#genre').val());
     useLibrary.addGame(newGame);
-    useLibrary.render();
-    });
-
-  //shows all libraries
-  $('#show').on("click", function(e){
-    e.preventDefault();
-    $('#answers').html('');
-    for (var i = 0; i < libraries.length; i++) {
-    libraries[i].render();
+    for (var l = 0; l < libraries.length; l++) {
+      libraries[l].render();
     }
   });
 
@@ -109,26 +101,29 @@ $(document).on('ready', function() {
     libraries = [];
   });
 
-  // delete game
-   $('#delete-btn').on("click", function(e){
-    e.preventDefault();
-    var useLibrary;
-    var game;
-    var libName = $("#lib-delete").val();
-      for (var i = 0; i < libraries.length; i++) {
-        if(libName === libraries[i].name){
-          useLibrary = libraries[i];
-          }
-        }
-    var gameTitle = $('#game-delete').val();
-      for (var j = 0; j < useLibrary.library.length; j++) {
-        if(gameTitle === useLibrary.library[j].title){
-            game = useLibrary.library[j];
-          }
-        }
-    game.deleteGame(useLibrary);
+
+  $(document).on("click", '.delete-click', function(){
+    var index = $(this).prev().html().split(':').splice(1, 1);
+    var trimTitle = index[0].trim();
+    var gameDelete;
+    var indexD;
+    var libraryD;
+    for (var i = 0; i < libraries.length ; i++) {
+      for (var j = 0; j <libraries[i].library.length; j++) {
+        if (trimTitle === libraries[i].library[j].title){
+          gameDelete = libraries[i].library[j];
+          libraryD = libraries[i];
+          indexD = libraryD.library.indexOf(gameDelete);
+          libraryD.library.splice(indexD, 1);
+      }
+    }
+  }
+    $(this).closest('div').remove();
     $('#answers').html('');
-    useLibrary.render();
-  });
+    for (var l = 0; l < libraries.length; l++) {
+    libraries[l].render();
+    }
+});
+
 
 }); //end of document
