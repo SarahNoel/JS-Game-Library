@@ -30,6 +30,7 @@ var Game = function (title, genre) {
   this.genre = genre;
 };
 
+//delete game
 Game.prototype.deleteGame = function(libraryDelete){
   index = libraryDelete.library.indexOf(this);
   libraryDelete.library.splice(index, 1);
@@ -46,25 +47,10 @@ function newDropdownOption (array){
   $('#libtitle').val('');
 }
 
-//clear html and render all libraries$('#answers').html('');
+//clear html and render all libraries
 function clearPrintLibraries(array){
   $('#answers').html('');
   for (var i = 0; i < array.length; i++) {
       array[i].render();
     }
   }
-
-
-  // $('#new-library-submit').on("click", function(e){
-  //   e.preventDefault();
-  //   var libr = $('#libtitle').val();
-  //   libr = new Library(libr);
-  //   libraries.push(libr);
-  //   newDropdownOption(libraries);
-  //   clearPrintLibraries(libraries);
-  // });
-
-
-
-
-
