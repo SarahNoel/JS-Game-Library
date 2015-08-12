@@ -1,22 +1,70 @@
-.game-library {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid black;
+
+body, html{
+  font-family: 'Dosis', sans-serif;
+  font-size: 18px;
+  height: 100%;
+  padding-bottom: 50px;
+  font-weight: bold;
+  background: -webkit-linear-gradient(bottom left, #f5f6f6 0%, #dbdce2 21%, #b8bac6 49%, #dddfe3 80%, #f5f6f6 100%);
+  background: -o-linear-gradient(bottom left, #f5f6f6 0%, #dbdce2 21%, #b8bac6 49%, #dddfe3 80%, #f5f6f6 100%);
+  background: linear-gradient(to top right, #f5f6f6 0%, #dbdce2 21%, #b8bac6 49%, #dddfe3 80%, #f5f6f6 100%);
 }
 
-body{
-  font-family: 'Dosis', sans-serif;
+.header{
+  border:3px solid #4cadad;
+  background-color: white;
+}
+
+.container{
+  float:left;
+  width: 28%;
+  height: 100%;
+}
+
+.answers{
+    float: left;
+    width:72%;
+    -webkit-columns: 4 180px;
+     -moz-columns: 4 180px;
+          columns: 4 180px;
+    height: 100%;
+    padding-bottom: 50px
+
 }
 
 h1{
-  padding-left: 25px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50px;
 }
 
 .delete-click{
-  background-color:red;
+  background-color:#A60000;
   color : white;
   height: 20px;
   font-size: 8px;
-  float: right;
   margin-left: 10px;
+  vertical-align: text-top;
+}
+
+.submit{
+  font-size: 16px;
+  background-color: white
+}
+
+.reset{
+  position: relative;
+  left: 43%;
+  top: 13px
+}
+
+.footer{
+  background-color: #4CADAD;
+  border-top: 3px black solid;
+  border-bottom: 3px black solid;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  position: absolute;
+  width: 100%;
 }

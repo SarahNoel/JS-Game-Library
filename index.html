@@ -8,10 +8,47 @@
     <link href='http://fonts.googleapis.com/css?family=Dosis:400,600' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <h1>Game Library</h1>
+
+  <div class = "header">
+      <h1>Game Library</h1>
+  </div>
+
+  <div class = 'container'>
+
+    <div id="lib-div">
+    <br>
+      <form name = "allLibraries">Game Library: <br>
+      <input type="text" name="libtitle" id="libtitle"><br><br>
+      <input type="submit" value="Create Library" class="submit" id= "new-library-submit"><br><br>
+      <select id ="lib">
+        <option value ="">Create a library</option>
+      </select>
+    </form><br>
+    </div>
+    <div id="game-div" >
+      <form>Game Title: <br>
+        <input type="text" name="game-title" id="title">
+        <br>Game Genre: <br><input type="text" name="game-genre" id="genre">
+        <br><br>
+        <input type="submit" value="Add Game" class="submit" id= "new-game">
+        <br>
+      </form>
+        <br>
+    </div>
+  </div>
+
+  <div id="answers" class="answers">
+    <ul id="games"> </ul>
+  </div>
+
+  <div class = "footer">
+  <button id="reset" class="submit reset">Reset All Libraries</button>
+  </div>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/refactoredMain.js"></script>
+    <script type="text/javascript" src="js/dom.js"></script>
+
   </body>
 </html>
