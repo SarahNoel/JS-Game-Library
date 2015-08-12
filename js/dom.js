@@ -5,15 +5,25 @@ $(document).on('ready', function() {
   $('#new-library-submit').on("click", function(e){
     e.preventDefault();
     var libr = $('#libtitle').val();
-    libr = new Library(libr);
-    libraries.push(libr);
-    newDropdownOption(libraries);
-    });
+    for (var i = 0; i <= libraries.length; i++) {
+      if(libraries.length === 0 || libraries[i].name != libr){
+        libr = new Library(libr);
+        libraries.push(libr);
+        newDropdownOption(libraries);
+        clearPrintLibraries(libraries);
+        console.log(libraries[i].name, libr);
+        return libraries;
+      }else{
+        $('#libtitle').val("");
+        alert("Sorry, that library name already exists.  Please choose a unique library name.");
+
+      }
+    }
+  });
 
   //create new game
   $('#new-game').on("click", function(e){
     e.preventDefault();
-    $('#answers').html('');
     //get name from dropdown menu
     var libName = $("#lib option:selected").val();
     var useLibrary;
@@ -26,9 +36,7 @@ $(document).on('ready', function() {
     //creates new game, pushes to library, appends to DOM
     var newGame = new Game($("#title").val(), $('#genre').val());
     useLibrary.addGame(newGame);
-    for (var l = 0; l < libraries.length; l++) {
-      libraries[l].render();
-    }
+    clearPrintLibraries(libraries);
   });
 
   //resets all libraries and clears DOM
@@ -57,10 +65,7 @@ $(document).on('ready', function() {
     }
   }
     $(this).closest('div').remove();
-    $('#answers').html('');
-    for (var l = 0; l < libraries.length; l++) {
-    libraries[l].render();
-    }
+    clearPrintLibraries(libraries);
 });
 
 

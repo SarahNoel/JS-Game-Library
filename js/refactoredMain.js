@@ -46,3 +46,25 @@ function newDropdownOption (array){
   $('#libtitle').val('');
 }
 
+//clear html and render all libraries$('#answers').html('');
+function clearPrintLibraries(array){
+  $('#answers').html('');
+  for (var i = 0; i < array.length; i++) {
+      array[i].render();
+    }
+  }
+
+
+  // $('#new-library-submit').on("click", function(e){
+  //   e.preventDefault();
+  //   var libr = $('#libtitle').val();
+  //   libr = new Library(libr);
+  //   libraries.push(libr);
+  //   newDropdownOption(libraries);
+  //   clearPrintLibraries(libraries);
+  // });
+
+
+
+
+
