@@ -18,8 +18,7 @@ Library.prototype.render = function(library){
   $('#answers').append("<h3>" + this.name +"</h3>");
   for (var i = 0; i < this.library.length; i++) {
     $('#answers')
-      .append('<div><li><span id="sib">Title: ' + this.library[i].title + "        "  + '</span><button class="delete-click">x</button></li><li>Genre: ' + this.library[i].genre + '</li></div>')
-      .append('<br>');
+      .append('<div><li><span id="sib">Title: ' + this.library[i].title + "        "  + '</span><button class="delete-click">x</button></li><li>Genre: ' + this.library[i].genre + '</li></div><br>');
   }
   $('input').not('.submit').val('');
 };
@@ -53,4 +52,9 @@ function clearPrintLibraries(array){
   for (var i = 0; i < array.length; i++) {
       array[i].render();
     }
-  }
+}
+
+
+
+
+

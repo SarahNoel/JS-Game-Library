@@ -24,9 +24,9 @@ body, html{
 .answers{
     float: left;
     width:72%;
-    -webkit-columns: 4 180px;
-     -moz-columns: 4 180px;
-          columns: 4 180px;
+    -webkit-columns: 5 180px;
+     -moz-columns: 5 180px;
+          columns: 5 180px;
     height: 100%;
     padding-bottom: 50px
 

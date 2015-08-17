@@ -14,18 +14,45 @@
   </div>
 
   <div class = 'container'>
-
-    <div id="lib-div">
     <br>
-      <form name = "allLibraries">Game Library: <br>
-      <input type="text" name="libtitle" id="libtitle"><br><br>
-      <input type="submit" value="Create Library" class="submit" id= "new-library-submit"><br><br>
-      <select id ="lib">
-        <option value ="">Create a library</option>
-      </select>
-    </form><br>
+    <br>
+    <input type="submit" class="submit" value ="Add New Game Library" data-toggle="modal" data-target="#myModal">
+
+    </input>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Create Game Library</h4>
+          </div>
+          <div class="modal-body">
+            <div id="lib-div">
+            <form name = "allLibraries">Game Library: <br>
+              <input type="text" name="libtitle" id="libtitle"><br><br>
+              <input type="submit" value="Create Library" class="submit" data-dismiss="modal" id= "new-library-submit"><br><br>
+
+            </form>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="game-div" >
+    <br>
+    <br>
+
+    <select id ="lib">
+      <option value ="">Create a library</option>
+    </select>
+    <br>
+    <br>
+       <div id="game-div" >
       <form>Game Title: <br>
         <input type="text" name="game-title" id="title">
         <br>Game Genre: <br><input type="text" name="game-genre" id="genre">
