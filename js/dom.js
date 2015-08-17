@@ -53,6 +53,7 @@ $(document).on('ready', function() {
   $(document).on("click", '.delete-click', function(){
     var index = $(this).prev().html().split(':').splice(1, 1);
     var trimTitle = index[0].trim();
+    console.log(index, trimTitle);
     var gameDelete;
     var indexD;
     var libraryD;
